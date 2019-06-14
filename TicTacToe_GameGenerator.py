@@ -1,5 +1,5 @@
 """
-generate tictactoe game output (which will be used for creating smart cpu)
+Generate tictactoe game output (which will be used for creating smart cpu)
 and save it as an excel document.
 Check TicTacToe.py for more in depth documentation of the code
 2019
