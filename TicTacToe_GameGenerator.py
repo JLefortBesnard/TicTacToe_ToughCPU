@@ -53,6 +53,7 @@ def randomcpu():
         randcpu_choice = random.randint(1, 9)
         while game.check_pos(randcpu_choice) == 1:
             randcpu_choice = random.randint(1, 9)
+        # the cpu starting the game got the symbole "O"
         game.move(randcpu_choice, 'O')
         memory_moves.append(randcpu_choice)
         nb_moves += 1
@@ -61,6 +62,7 @@ def randomcpu():
             smartcpu_choice = random.randint(1, 9)
             while game.check_pos(smartcpu_choice) == 1:
                 smartcpu_choice = random.randint(1, 9)
+            # the cpu playing second got the symbole "X"
             game.move(smartcpu_choice, 'X')
             memory_moves.append(smartcpu_choice)
             nb_moves += 1
