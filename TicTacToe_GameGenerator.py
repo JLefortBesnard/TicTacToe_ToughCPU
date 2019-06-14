@@ -42,7 +42,7 @@ class board:
                 victory = self.board[pos1]
         return victory
 
-# The idea is to make this computer smart afterward
+# The idea is to make smartcpu_choice smart afterward
 def randomcpu():
     memory_moves = []
     game = board()
@@ -70,7 +70,7 @@ def randomcpu():
         # save the output as a list of [move and output game (win 1, lose -1 or even 0)]
         output = np.array([memory_moves, 0])
     elif game.victory() != False:
-        if game.victory() == 'X':
+        if game.victory() == 'O':
             print("victory for starter")
             # save the output as a list of [move and output game (win 1, lose -1 or even 0)]
             output = np.array([memory_moves, 1])
