@@ -1,6 +1,7 @@
 """
 Generate tictactoe game output (which will be used for creating smart cpu)
-and save it as an excel document.
+and save it as an excel document (will create a folder named "memory" and store the Excel file inside.
+Mind your current directory when running the script.
 Check TicTacToe.py for more in depth documentation of the code
 2019
 Author:
