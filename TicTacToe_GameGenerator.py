@@ -1,6 +1,7 @@
 """
 generate tictactoe game output (which will be used for creating smart cpu)
-CHECK TicTacToe.py for complete documentation of the code
+and save it as an excel document.
+Check TicTacToe.py for more in depth documentation of the code
 2019
 Author:
         Jeremy Lefort-Besnard   jlefortbesnard (at) tuta (dot) io
