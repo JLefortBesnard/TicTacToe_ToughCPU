@@ -89,8 +89,8 @@ def game():
     again = int(input("how many games to simulate? > "))
     turn = 0
     path = "memory\\memory.xls"
-
-    if not os.path.exists(path):
+    if not os.path.exists(path): 	
+        os.mkdir("memory")
         df = pd.DataFrame(columns = ["moves", "output"])
     else:
         df = pd.read_excel(path)
