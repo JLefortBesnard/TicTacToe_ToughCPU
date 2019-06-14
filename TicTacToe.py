@@ -1,5 +1,5 @@
 """
-Simple tictactoe game
+Simple tictactoe game human vs random choice of cpu
 2019
 Author:
         Jeremy Lefort-Besnard   jlefortbesnard (at) tuta (dot) io
