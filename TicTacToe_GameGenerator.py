@@ -102,6 +102,7 @@ def game():
 
     print("saving and quit...")
     # save the pandas dataframe output in an exel document
+    # 1 when starter won, -1 when starter lost, 0 for even
     df.to_excel(path, index=False)
 
 game()
