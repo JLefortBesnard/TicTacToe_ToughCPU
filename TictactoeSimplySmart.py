@@ -1,5 +1,5 @@
 """
-Simple tictactoe game
+Tictactoe game human vs hand-crafted AI (no training involved) 
 2019
 Author:
         Jeremy Lefort-Besnard   jlefortbesnard (at) tuta (dot) io
@@ -7,18 +7,11 @@ Author:
 
 #Library we need
 from sys import platform as sp
-import time
-import os
-import subprocess
-import pandas as pd
 import numpy as np
-from random import choice
-import platform
-import time
 from os import system
 from copy import deepcopy
 
-# create the board, update it
+# create the board, update it, check for winning position, highlight winning position, check if board full
 class board:
     """
     This class create the board structure, print it, update it at each move,
@@ -36,9 +29,11 @@ class board:
         print(' ' + position[7] + ' | ' + position[8] + ' | ' + position[9])
 
     def write_move(self, move, symbole):
+        # Write move on board
         self.board[move] = symbole
 
     def check_pos(self, move):
+         # Check that move is alowed or at least not already taken
         if self.board[move] != ' ':
             print("Position already taken...")
             return 1
@@ -59,8 +54,8 @@ class board:
 
     def keep_playing(self):
         # Return False if game is over
-        # Check if winner
         victory_combinations = [[1,2,3], [4,5,6], [7,8,9], [1,5,9], [7,5,3], [1,4,7], [2,5,8], [3,6,9]]
+        # Check if winner
         for combination in victory_combinations:
             pos1, pos2, pos3 = combination[0], combination[1], combination[2]
             if self.board[pos1] == self.board[pos2] == self.board[pos3] != " ":
@@ -72,6 +67,7 @@ class board:
         return False
 
     def highlighter(self):
+        # Highlight winning line
         position = self.board
         # winning combinations
         victory_combinations = [[1,2,3], [4,5,6], [7,8,9], [1,5,9], [7,5,3], [1,4,7], [2,5,8], [3,6,9]]
@@ -88,33 +84,6 @@ class board:
         print(' ' + position[4] + ' | ' + position[5] + ' | ' + position[6])
         print('-----------')
         print(' ' + position[7] + ' | ' + position[8] + ' | ' + position[9])
-
-
-
-def highlighter(current_game):
-    # define where the wining line is
-    victory_combinations = [[1,2,3], [4,5,6], [7,8,9], [1,5,9], [7,5,3], [1,4,7], [2,5,8], [3,6,9]]
-    board = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-    for combination in victory_combinations:
-        pos1, pos2, pos3 = combination[0], combination[1], combination[2]
-        if board[pos1] == board[pos2] == board[pos3] == "X":
-            board[pos1] = "\x1b[10;10;31mX\x1b[0m"
-            board[pos2] = "\x1b[10;10;31mX\x1b[0m"
-            board[pos3] = "\x1b[10;10;31mX\x1b[0m"
-        elif board[pos1] == board[pos2] == board[pos3] == "O":
-            board[pos1] = "\x1b[10;10;31mO\x1b[0m"
-            board[pos2] = "\x1b[10;10;31mO\x1b[0m"
-            board[pos3] = "\x1b[10;10;31mO\x1b[0m"
-
-
-
-
-    print(" " * 10)
-    print("**" * 10)
-    print(" " * 10)
-
-
-
 
 
 # Display the coordinate system of the game, make it easier for the human player to know what to play
