@@ -1,10 +1,16 @@
 # TicTacToe
-Create a TicTacToe with smart cpu
 
-TicTacToe.py => human vs random cpu
+Tic Tac Toe game with a smart CPU, good luck, this guy is quite tough...
 
-TicTacToe_GameGenerator.py => quickly simulate a (human defined) number of games cpu vs cpu (random) to get multiple output to fit the model later one
+To start playing, type 1, 2 otherwise.
+Stop playing by pressing ctrl + C
 
-game_output_viewer.py => display the output of the generated gamed cpu vs cpu with victory line in red to make sure there was no bugs
+Choose where you play given these coordinates:
 
-(Smart cpu: ongoing building process, only random for now)
+ 1 | 2 | 3 
+-----------
+ 4 | 5 | 6
+-----------
+ 7 | 8 | 9
+ 
+
