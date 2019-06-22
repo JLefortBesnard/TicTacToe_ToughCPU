@@ -1,4 +1,4 @@
-# TicTacToe
+# TicTacToe hand crafted AI
 
 Tic Tac Toe game with an hand crafted AI, good luck, this guy is quite tough...
 
