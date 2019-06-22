@@ -1,5 +1,6 @@
 """
-Tictactoe game human vs hand-crafted AI (no training involved) 
+Tictactoe game 
+human vs hand-crafted AI (no training involved) 
 2019
 Author:
         Jeremy Lefort-Besnard   jlefortbesnard (at) tuta (dot) io
@@ -11,11 +12,10 @@ import numpy as np
 from os import system
 from copy import deepcopy
 
-# create the board, update it, check for winning position, highlight winning position, check if board full
 class board:
     """
-    This class create the board structure, print it, update it at each move,
-    look at the position of X and O to check for game status (victory/even)
+    This class create the board structure, print it, update it,
+    check for winning position, highlight winning position, check if board full or still move available
     """
     def __init__(self):
         self.board = [' '] * 10
@@ -101,33 +101,36 @@ def clear_screen():
     else:
         os.system('clear')
 
-
+# AI
 def smart_CPU(current_game, brd):
     # diplay possible moves
     available_moves = np.setdiff1d(np.array([1, 2, 3, 4, 5, 6, 7, 8, 9]), current_game)
-    # Check if next move can be a winning move, return it if so
     best_move = 0
     for move in available_moves:
         vitual_check_win = deepcopy(brd)
         vitual_check_win.write_move(move, 'O')
         vitual_check_loose = deepcopy(brd)
         vitual_check_loose.write_move(move, 'X')
+        # Check if a move can be a winning move, return it if so
         if vitual_check_win.check_for_victory() == 'O':
             return move
+        # Check if a move from the opponent can make the AI loose, return it if so, to block the opponent
         if vitual_check_loose.check_for_victory() == 'X':
+            # Not a return because winning is a priority over blocking (if no winning move, then block)
             best_move = move
     if best_move != 0:
-        return best_move # return the move that block the opponent
+        return best_move # return the move that block the opponent only if no winning move
+
     if 5 in available_moves:
-            return 5
+            return 5 # best move to play if no winning or blocking move
     corners = [1, 3, 7, 9]
     for corner in corners:
         if corner in available_moves:
-                return corner
+                return corner # best move to play if 5 not available and no winning or blocking move
     edges = [2, 4, 6, 8]
     for edge in edges:
         if edge in available_moves:
-                return edge
+                return edge # best move to play if 5 not available and no winning or blocking move and no more empty corner
 
 
 def intro():
@@ -151,6 +154,7 @@ def intro():
 
 
 def winner(game_status):
+    # Return the output of the game, win, lost or even
     print(" ")
     print(" **** ")
     print(" ")
@@ -164,22 +168,22 @@ def winner(game_status):
     print(" **** ")
 
 
-
-
 def play_a_game():
-    first = intro()
-    brd = board()
-    current_game = []
+    first = intro() # print beautiful intro
+    brd = board() # initialize a board
+    current_game = [] # needed for the AI to find the best next move
     if first == "1": # human first
-        while brd.keep_playing() == True:
+        while brd.keep_playing() == True: # No winner and still available move
+            # HUMAN TURN
             move = int(input("What's your move?"))
-            # Forbid player to play a forbiden move or an already taken one
+            # Forbid human player to play a forbiden move or an already taken one
             while brd.check_pos(move) == 1:
                 move = int(input("Sorry, what move?"))
             current_game.append(move)
             brd.write_move(move, "X")
             clear_screen()
-            if brd.keep_playing() == True:
+            if brd.keep_playing() == True: # No winner and still available move
+                # AI TURN
                 computer_move = smart_CPU(current_game, brd)
                 brd.write_move(computer_move, "O")
                 current_game.append(int(computer_move))
@@ -188,7 +192,8 @@ def play_a_game():
                 brd.print_board()
                 print(" ")
     else: # computer cpu first
-        while brd.keep_playing() == True:
+        while brd.keep_playing() == True: # No winner and still available move
+            # AI TURN
             computer_move = smart_CPU(current_game, brd)
             brd.write_move(computer_move, "O")
             current_game.append(int(computer_move))
@@ -196,23 +201,24 @@ def play_a_game():
             print(" ")
             brd.print_board()
             print(" ")
-            if brd.keep_playing() == True:
+            if brd.keep_playing() == True: # No winner and still available move
+                # HUMAN TURN
                 move = int(input("What's your move?"))
-                # Forbid player to play a forbiden move or an already taken one
+                # Forbid human player to play a forbiden move or an already taken one
                 while brd.check_pos(move) == 1:
                     move = int(input("Sorry, what move?"))
                 current_game.append(int(move))
                 brd.write_move(move, "X")
                 clear_screen()
     clear_screen()
-    game_status = brd.check_for_victory()
-    brd.highlighter()
-    return winner(game_status)
+    game_status = brd.check_for_victory() 
+    brd.highlighter() # display the game (if winner, highlight the winning line)
+    return winner(game_status) # display output of the game
 
 clear_screen()
 print("Press control +  C to stop playing")
 again = 1
-while again == 1:
+while again == 1: # infinite loop until ctrl + c
     play_a_game()
     print("Play again?")
     play_again = input("Press Enter to continue, ctrl + C to quit")
