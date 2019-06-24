@@ -14,5 +14,5 @@ Choose where you play given these coordinates:
  
  7 | 8 | 9
 
- Inspiration for the logical CPU agent: https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg
+ Inspiration for the logical CPU agent got from this link: https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg
 
